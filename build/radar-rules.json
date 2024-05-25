@@ -2962,6 +2962,20 @@
       }
     ]
   },
+  "cfr.org": {
+    "_name": "Council on Foreign Relations",
+    "www": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
+          "/:category",
+          "/:category/:subCategory"
+        ],
+        "target": "/cfr/:category/:subCategory?"
+      }
+    ]
+  },
   "cgtn.com": {
     "_name": "中国环球电视网",
     ".": [
@@ -8280,6 +8294,19 @@
       }
     ]
   },
+  "imdb.com": {
+    "_name": "IMDb",
+    "www": [
+      {
+        "title": "Charts",
+        "docs": "https://docs.rsshub.app/routes/multimedia",
+        "source": [
+          "/chart/:chart/"
+        ],
+        "target": "/imdb/chart/:chart?"
+      }
+    ]
+  },
   "imiker.com": {
     "_name": "米课",
     ".": [
@@ -9769,6 +9796,35 @@
       }
     ]
   },
+  "matters.town": {
+    "_name": "Matters",
+    ".": [
+      {
+        "title": "Author",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/:uid"
+        ],
+        "target": "/mattersparams=>`/matters/author/${params.uid.slice(1)}`"
+      },
+      {
+        "title": "Latest, heat, essence",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/matters/latest/:type?"
+      },
+      {
+        "title": "Tags",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/tags/:tid"
+        ],
+        "target": "/matters/tags/:tid"
+      }
+    ]
+  },
   "mdpi.com": {
     "_name": "MDPI",
     "www": [
@@ -10898,6 +10954,30 @@
           "/"
         ],
         "target": "/nikkei/asia"
+      }
+    ],
+    "cn": [
+      {
+        "title": "中文版新闻",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
+          "/:category/:type",
+          "/:category",
+          "/"
+        ],
+        "target": "/nikkeiparams=>{if(params.category&&params.type){return`/nikkei/cn/cn/${params.category}/${params.type.replace(\".html\",\"\")}`}else if(params.category&&!params.type){return`/nikkei/cn/cn/${params.category.replace(\".html\",\"\")}`}else{return`/nikkei/cn/cn`}}"
+      }
+    ],
+    "zh.cn": [
+      {
+        "title": "中文版新聞",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
+          "/:category/:type",
+          "/:category",
+          "/"
+        ],
+        "target": "/nikkeiparams=>{if(params.category&&params.type){return`/nikkei/cn/zh/${params.category}/${params.type.replace(\".html\",\"\")}`}else if(params.category&&!params.type){return`/nikkei/cn/zh/${params.category.replace(\".html\",\"\")}`}else{return`/nikkei/cn/zh`}}"
       }
     ]
   },
