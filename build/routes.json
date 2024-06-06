@@ -8968,18 +8968,18 @@
         "maintainers": [
           "FranklinYu"
         ],
-        "example": "/bug/webkit/251528",
+        "example": "/bugzilla/bug/webkit/251528",
         "parameters": {
           "site": "site identifier",
           "bugId": "numeric identifier of the bug in the site"
         },
-        "description": "Supported site identifiers: [`apache`](https://bz.apache.org/bugzilla), [`apache.ooo`](https://bz.apache.org/ooo), [`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin), [`mozilla`](https://bugzilla.mozilla.org), [`webkit`](https://bugs.webkit.org).",
+        "description": "Supported site identifiers: [`apache`](https://bz.apache.org/bugzilla), [`apache.ooo`](https://bz.apache.org/ooo), [`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin), [`kernel`](https://bugzilla.kernel.org), [`mozilla`](https://bugzilla.mozilla.org), [`webkit`](https://bugs.webkit.org).",
         "categories": [
           "programming"
         ],
         "zh": {
           "name": "bugs",
-          "description": "支持的站点标识符：[`apache`](https://bz.apache.org/bugzilla)、[`apache.ooo`](https://bz.apache.org/ooo)、[`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin)、[`mozilla`](https://bugzilla.mozilla.org)、[`webkit`](https://bugs.webkit.org)。"
+          "description": "支持的站点标识符：[`apache`](https://bz.apache.org/bugzilla)、[`apache.ooo`](https://bz.apache.org/ooo)、[`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin)、[`kernel`](https://bugzilla.kernel.org)、[`mozilla`](https://bugzilla.mozilla.org)、[`webkit`](https://bugs.webkit.org)。"
         },
         "location": "bug.ts"
       }
@@ -36219,7 +36219,7 @@
         "location": "index.ts"
       }
     },
-    "name": "Unknown",
+    "name": "MangaDex",
     "url": "mangadex.org"
   },
   "manhuagui": {
@@ -36332,6 +36332,35 @@
     },
     "name": "看漫画",
     "url": "www.manhuagui.com"
+  },
+  "manyvids": {
+    "routes": {
+      "/profile/vids/:uid": {
+        "path": "/profile/vids/:uid",
+        "radar": [
+          {
+            "source": [
+              "www.manyvids.com/Profile/:uid/:handle/Store/*",
+              "www.manyvids.com/Profile/:uid/:handle/Store"
+            ]
+          }
+        ],
+        "parameters": {
+          "uid": "User ID, can be found in the URL."
+        },
+        "name": "Creator Videos",
+        "example": "/manyvids/profile/vids/1001213004",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "location": "video.ts"
+      }
+    },
+    "name": "ManyVids",
+    "url": "www.manyvids.com",
+    "categories": [
+      "multimedia"
+    ]
   },
   "mastodon": {
     "routes": {
@@ -54069,6 +54098,39 @@
         "url": "sspai.com/matrix",
         "location": "matrix.ts"
       },
+      "/prime/community": {
+        "path": "/prime/community",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/sspai/prime/community",
+        "features": {
+          "requireConfig": [
+            {
+              "name": "SSPAI_BEARERTOKEN",
+              "optional": false,
+              "description": "少数派会员账号认证 token。获取方式：登陆后打开少数派会员社区界面，打开浏览器开发者工具中 “网络”(Network) 选项卡，筛选 URL 找到任一个地址为 `sspai.com/api` 开头的请求，点击检查其 “消息头”，在 “请求头” 中找到Authorization字段，将其值复制填入配置即可。你的配置应该形如 `SSPAI_BEARERTOKEN: 'Bearer eyJxxxx......xx_U8'`。"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "sspai.com/community"
+            ]
+          }
+        ],
+        "name": "会员社区",
+        "maintainers": [
+          "mintyfrankie"
+        ],
+        "location": "prime-community.ts"
+      },
       "/series/:id": {
         "path": "/series/:id",
         "categories": [
@@ -56908,7 +56970,8 @@
         "path": "/channel/:type?/:language?",
         "name": "专题・栏目",
         "maintainers": [
-          "prnake"
+          "prnake",
+          "mintyfrankie"
         ],
         "parameters": {
           "type": "栏目，缺省为最新",
@@ -56951,18 +57014,13 @@
         "categories": [
           "new-media"
         ],
-        "description": "Web 版认证 token 和 iOS 内购回执认证 token 只需选择其一填入即可。你也可选择直接在环境设置中填写明文的用户名和密码",
+        "description": "需填入 Web 版认证 token, 也可选择直接在环境设置中填写明文的用户名和密码",
         "features": {
           "requireConfig": [
             {
               "name": "INITIUM_BEARER_TOKEN",
               "optional": true,
               "description": "端传媒 Web 版认证 token。获取方式：登陆后打开端传媒站内任意页面，打开浏览器开发者工具中 “网络”(Network) 选项卡，筛选 URL 找到任一个地址为 `api.initium.com` 开头的请求，点击检查其 “消息头”，在 “请求头” 中找到Authorization字段，将其值复制填入配置即可。你的配置应该形如 `INITIUM_BEARER_TOKEN: 'Bearer eyJxxxx......xx_U8'`。使用 token 部署的好处是避免占据登陆设备数的额度，但这个 token 一般有效期为两周，因此只可作临时测试使用。"
-            },
-            {
-              "name": "INITIUM_IAP_RECEIPT",
-              "optional": true,
-              "description": "端传媒 iOS 版内购回执认证 token。获取方式：登陆后打开端传媒 iOS app 内任意页面，打开抓包工具，筛选 URL 找到任一个地址为 `api.initium.com` 开头的请求，点击检查其 “消息头”，在 “请求头” 中找到 `X-IAP-Receipt` 字段，将其值复制填入配置即可。你的配置应该形如 `INITIUM_IAP_RECEIPT: ef81dee9e4e2fe084a0af1ea82da2f7b16e75f756db321618a119fa62b52550e`。"
             },
             {
               "name": "INITIUM_USERNAME",
@@ -62390,7 +62448,8 @@
           {
             "source": [
               "m.weibo.cn/u/:uid",
-              "m.weibo.cn/profile/:uid"
+              "m.weibo.cn/profile/:uid",
+              "www.weibo.com/u/:uid"
             ],
             "target": "/user/:uid"
           }
